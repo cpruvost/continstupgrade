@@ -82,7 +82,7 @@ resource "oci_apigateway_deployment" "test_deployment" {
         type = var.deployment_specification_routes_backend_type
         #LB url
         #url  = var.deployment_specification_routes_backend_url
-        url = "http://${var.lb_ip_address}/${request.path[endpoints]}"
+        url = "http://${var.lb_ip_address}/$${request.path[endpoints]}"
       }
       path = var.deployment_specification_routes_path
       methods = var.deployment_specification_routes_methods
