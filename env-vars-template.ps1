@@ -32,3 +32,6 @@ $env:TF_VAR_ci_container_env_variables='{ DATABASE_URL = "mysql://username:xyz@i
 # DNS Zone Name
 $env:TF_VAR_zone_name="test.com"
 
+# API Gateway Name
+$env:TF_VAR_gateway_display_name="CI_GATEWAY"
+

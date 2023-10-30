@@ -17,3 +17,7 @@ output "zones" {
 output "rrset" {
   value = module.dns.rrset
 }
+
+output "gateways" {
+  value = module.apigateway.gateways
+}
