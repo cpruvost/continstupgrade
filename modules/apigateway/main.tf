@@ -20,6 +20,41 @@ variable "public_subnet_ocid" {
     type        = string
 }
 
+variable "deployment_path_prefix" {
+  description = "The OCI API Deployment Path"
+  type        = string  
+  default     = "/ci"
+}
+
+variable "deployment_specification_routes_backend_type" {
+  description = "The OCI API Route Backend Type"
+  type        = string  
+  default     = "HTTP_BACKEND"
+}
+
+# variable "deployment_specification_routes_backend_url" {
+#   description = "The OCI API Route Backend Url"
+#   type        = string    
+#   default     = "http://lb-ipaddressapi/${request.path[endpoints]}"
+# }
+
+variable "lb_ip_address" {
+    description = "The OCI LB CI IP Address"
+    type        = string
+}
+
+variable "deployment_specification_routes_methods" {
+  description = "The OCI API Route Methods (GET, POST, ...)"
+  type        = list
+  default     = ["ANY"]
+}
+
+variable "deployment_specification_routes_path" {
+  description = "The OCI API Route Path"
+  type        = string  
+  default = "/{endpoints}"
+}
+
 resource "oci_apigateway_gateway" "test_gateway" {
   #Required
   compartment_id = var.compartment_ocid
@@ -31,4 +66,34 @@ resource "oci_apigateway_gateway" "test_gateway" {
 data "oci_apigateway_gateways" "test_gateways" {
   #Required
   compartment_id = var.compartment_ocid
+}
+
+resource "oci_apigateway_deployment" "test_deployment" {
+  #Required
+  compartment_id = var.compartment_ocid
+  gateway_id     = oci_apigateway_gateway.test_gateway.id
+  path_prefix    = var.deployment_path_prefix
+
+  specification {
+    routes {
+      #Required
+      backend {
+        #Required
+        type = var.deployment_specification_routes_backend_type
+        #LB url
+        #url  = var.deployment_specification_routes_backend_url
+        url = "http://${var.lb_ip_address}/${request.path[endpoints]}"
+      }
+      path = var.deployment_specification_routes_path
+      methods = var.deployment_specification_routes_methods
+    }
+  }
+}
+
+data "oci_apigateway_deployments" "test_deployments" {
+  #Required
+  compartment_id = var.compartment_ocid
+
+  #Optional
+  gateway_id   = oci_apigateway_gateway.test_gateway.id
 }

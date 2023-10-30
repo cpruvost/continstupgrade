@@ -21,3 +21,7 @@ output "rrset" {
 output "gateways" {
   value = module.apigateway.gateways
 }
+
+output "deployments" {
+  value = module.apigateway.deployments
+}

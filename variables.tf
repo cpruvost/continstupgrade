@@ -189,3 +189,9 @@ variable "gateway_display_name" {
     default     = "CI_GATEWAY"
 }
 
+variable "deployment_path_prefix" {
+  description = "The OCI API Deployment Path"
+  type        = string  
+  default     = "/ci"
+}
+
