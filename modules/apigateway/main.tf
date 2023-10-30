@@ -6,6 +6,7 @@ variable "compartment_ocid" {
 variable "gateway_display_name" {
     description = "The OCI Gateway Name"
     type        = string
+    default     = "CI_GATEWAY"
 }
 
 variable "gateway_endpoint_type" {

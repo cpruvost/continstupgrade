@@ -186,5 +186,6 @@ variable "zone_name" {
 variable "gateway_display_name" {
     description = "The OCI Gateway Name"
     type        = string
+    default     = "CI_GATEWAY"
 }
 
