@@ -66,6 +66,7 @@ resource "oci_apigateway_gateway" "test_gateway" {
 data "oci_apigateway_gateways" "test_gateways" {
   #Required
   compartment_id = var.compartment_ocid
+  display_name = var.gateway_display_name
 }
 
 resource "oci_apigateway_deployment" "test_deployment" {
