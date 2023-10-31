@@ -84,6 +84,7 @@ resource "oci_apigateway_deployment" "test_deployment" {
         #LB url
         #url  = var.deployment_specification_routes_backend_url
         url = "http://${var.lb_ip_address}/$${request.path[endpoints]}"
+        is_ssl_verify_disabled = false
       }
       path = var.deployment_specification_routes_path
       methods = var.deployment_specification_routes_methods
