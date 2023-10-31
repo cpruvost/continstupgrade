@@ -1,6 +1,6 @@
 output "gateways" {
   #value = data.oci_apigateway_gateways.test_gateways
-  value = oci_apigateway_gateway.test_gateway
+  value = oci_apigateway_gateway.test_gateway.ip_addresses
 }
 
 output "deployments" {
