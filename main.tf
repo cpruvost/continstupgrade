@@ -61,8 +61,8 @@ module "apigateway" {
   source  = "./modules/apigateway"
 
   compartment_ocid = var.compartment_ocid
-  public_subnet_ocid = var.public_subnet_ocid
   gateway_display_name = var.gateway_display_name
   lb_ip_address = module.loadbalancer.public_ip_lb[0].ip_address
   deployment_path_prefix = var.deployment_path_prefix
+  api_public_subnet_ocid = var.api_public_subnet_ocid
 }

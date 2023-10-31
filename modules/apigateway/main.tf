@@ -15,8 +15,8 @@ variable "gateway_endpoint_type" {
   default = "PUBLIC"
 }
 
-variable "public_subnet_ocid" {
-    description = "The OCI Public Subnet ocid"
+variable "api_public_subnet_ocid" {
+    description = "The OCI API Public Subnet ocid"
     type        = string
 }
 
@@ -59,7 +59,7 @@ resource "oci_apigateway_gateway" "test_gateway" {
   #Required
   compartment_id = var.compartment_ocid
   endpoint_type  = var.gateway_endpoint_type
-  subnet_id      = var.public_subnet_ocid
+  subnet_id      = var.api_public_subnet_ocid
   display_name   = var.gateway_display_name
 }
 

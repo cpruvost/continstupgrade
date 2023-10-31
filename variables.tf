@@ -195,3 +195,8 @@ variable "deployment_path_prefix" {
   default     = "/ci"
 }
 
+variable "api_public_subnet_ocid" {
+    description = "The OCI API Public Subnet ocid"
+    type        = string
+}
+
