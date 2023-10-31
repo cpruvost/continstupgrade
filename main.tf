@@ -51,7 +51,10 @@ module "dns" {
 
   compartment_ocid = var.compartment_ocid
   zone_name = var.zone_name
-  lb_ip_address = module.loadbalancer.public_ip_lb[0].ip_address
+  #if no IP GATEWAY
+  #lb_ip_address = module.loadbalancer.public_ip_lb[0].ip_address
+  #if with API GATEWAY
+  lb_ip_address = module.apigateway.gateways[0].ip_address
 }
 
 module "apigateway" {
