@@ -4,7 +4,9 @@ This project has been designed to run inside Oracle OCI Stacks Resource Manager 
 
 Note 1 : You must know Terraform to use id (Terraform Plan, Apply, Delete, ..)
 
-Note 2 : A new module for the OCI dns is added so the OCI Domain Name will be created automatically.
+Note 2 : A new module for the OCI dns was added so the OCI Domain Name will be created automatically.
+
+Note 3 : A new module for the OCI API Gateway was added. So at the end : Domain Public Name (Godaddy) --> OCI DNS Zone --> OCI API Gateway --> OCI Load Balancer --> OCI Container Instances
 
 ## Prerequisites
 
@@ -32,6 +34,7 @@ This project consider that your network configuration is done. It means :
 - VCN is created with a private subnet and a public subnet
 - The security list of the public subnet has an ingress rule for the load balancer port
 - The security list of the private subnet has an ingress rule for the container instances port
+- Note : you can have another VCN if you want for API Gateway with the good security lists
 
 You can look at the variables and see : 
 - Some of the variables have default values than can be updated by yourself or not (using the env-var-template.ps1(or.sh) or with Stack Ressource Manager Variables)
@@ -44,6 +47,7 @@ You can look at the variables and see :
   - ci_image_url_bis (Image version V2)
   - ci_registry_secret (ocid) # optional when policy gives the dyanamic group of CI access to fetch the repos 
   - domain name of the OCI DNS (that makes the relation with the LB IP Address)
+  - api_public_subnet_ocid
 
 ## Migrate from V1 to V2 without interruption service
 
@@ -60,4 +64,4 @@ Note : I did a load test using Apache JMeter during the test and I got 0% error 
 - You can do canary release as you want. Ok May be you will have more CI instead of 2 (just to get the % of V2 that you want) but only for 1h for ex (time to check that everything is Ok).
 - Natively you have a HA architecture (cause several CI and LB is HA)
 - You can improve the terraform script using 2 variables application_version and application_version_bis and use these variable for the name of the CI so you will know immediately the version deployed just looking at the name of the CI.
-- You can have Disaster Recovery. You can buy a domain name somewhere (ex : godaddy) and use the Oracle OCI DNS in order to not use directly the Ip Adress of the LB in region 1. In this case you will be able to switch from region 1 to region 2 in about 10 minutes. You use terraform to create the architecture on the region 2 (5 min) and you update the ip Address of the LB in the Oracle OCI DNS (5 min to see the update calling the url. This last time is not a guaranty, it depends on several parameters but in general it is possible in 5 minutes).
+- You can have Disaster Recovery. You can buy a domain name somewhere (ex : godaddy) and use the Oracle OCI DNS in order to not use directly the Ip Adress of the LB in region 1 (or API Gateway in front of the LB if you use it). In this case you will be able to switch from region 1 to region 2 in about 10 minutes. You use terraform to create the architecture on the region 2 (5 min) and you update the ip Address of the LB (or of the API Gateway in front of the LB if you use it) in the Oracle OCI DNS (5 min to see the update calling the url. This last time is not a guaranty, it depends on several parameters but in general it is possible in 5 minutes).

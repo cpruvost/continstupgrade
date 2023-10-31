@@ -33,4 +33,5 @@ export TF_VAR_ci_container_env_variables='{ DATABASE_URL = "mysql://username:xyz
 export TF_VAR_zone_name="test.com"
 
 # API Gateway Name
-export TF_VAR_gateway_display_name="CI_GATEWAY"
+export TF_VAR_api_public_subnet_ocid="ocid1.subnet.oc1.eu-frankfurt-1.**************************"
+

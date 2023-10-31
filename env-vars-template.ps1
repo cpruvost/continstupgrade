@@ -35,3 +35,6 @@ $env:TF_VAR_zone_name="test.com"
 # API Gateway Name
 $env:TF_VAR_gateway_display_name="CI_GATEWAY"
 
+# API Gateway Name
+$env:TF_VAR_api_public_subnet_ocid="ocid1.subnet.oc1.eu-frankfurt-1.**************************"
+
