@@ -148,12 +148,6 @@ variable "lb_name" {
     default     = "CI_FLEX_LB"
 }
 
-variable "lb_health_port" {
-    description = "The OCI LB Health Port"
-    type        = string
-    default     = "8000"
-}
-
 variable "lb_checker_health_port" {
     description = "The OCI LB Health Checker Port"
     type        = string
