@@ -150,7 +150,8 @@ resource "oci_container_instances_container_instance" "this" {
 
   image_pull_secrets {
         #Required
-        registry_endpoint = "fra.ocir.io"
+        #registry_endpoint = "fra.ocir.io"
+        registry_endpoint = "docker.io"
         #secret_type = "BASIC"
         #username = base64encode("username")
         #password = base64encode("password")
