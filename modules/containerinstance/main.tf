@@ -144,6 +144,8 @@ resource "oci_container_instances_container_instance" "this" {
           "DB_URL" = "${var.ci_container_env_variables.DB_URL}"
           "DB_USERNAME" = "${var.ci_container_env_variables.DB_USERNAME}"
           "DB_PASSWORD" = "${var.ci_container_env_variables.DB_PASSWORD}"
+          "papertrail_host" = "${var.ci_container_env_variables.papertrail_host}"
+          "papertrail_port" = "${var.ci_container_env_variables.papertrail_port}"
     }
     image_url             = var.ci_image_url
   }

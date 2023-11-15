@@ -127,6 +127,8 @@ variable "ci_container_env_variables" {
     DB_URL                       = null
     DB_USERNAME                  = null
     DB_PASSWORD                  = null
+    papertrail_host              = null
+    papertrail_port              = null
   }
 }
 
